@@ -13,6 +13,7 @@ public class Department {
     private Long id;
     private String name;
     @OneToMany(
+            fetch = FetchType.LAZY,
             mappedBy = "department",
             cascade = {CascadeType.REMOVE, CascadeType.PERSIST}
     )
