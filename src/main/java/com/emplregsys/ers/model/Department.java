@@ -1,7 +1,10 @@
-package com.employeeregistratrationsystem.model;
+package com.emplregsys.ers.model;
 
 
-import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +15,7 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @JsonIgnore
     @OneToMany(
             fetch = FetchType.LAZY,
             mappedBy = "department",

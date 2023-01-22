@@ -1,11 +1,13 @@
-package com.employeeregistratrationsystem.service;
+package com.emplregsys.ers.service;
 
-import com.employeeregistratrationsystem.model.Department;
-import com.employeeregistratrationsystem.model.DepartmentDto;
+import com.emplregsys.ers.model.Department;
+import com.emplregsys.ers.model.DepartmentDto;
+
 import java.util.List;
 import java.util.Optional;
 
 public interface DepartmentService {
+
     Department createDepartment(DepartmentDto departmentDto);
     Optional<Department> getDepartment(Long id);
     List<Department> getDepartments();

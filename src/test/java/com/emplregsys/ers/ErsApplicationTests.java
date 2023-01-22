@@ -1,4 +1,4 @@
-package com.employeeregistratrationsystem;
+package com.emplregsys.ers;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

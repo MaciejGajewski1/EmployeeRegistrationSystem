@@ -1,8 +1,7 @@
-package com.employeeregistratrationsystem.model;
+package com.emplregsys.ers.model;
 
 
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "contact_details")

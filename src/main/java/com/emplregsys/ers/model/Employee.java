@@ -1,7 +1,9 @@
-package com.employeeregistratrationsystem.model;
+package com.emplregsys.ers.model;
 
 
-import javax.persistence.*;
+
+import jakarta.persistence.*;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -102,11 +104,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    public com.employeeregistratrationsystem.model.EmploymentType getEmploymentType() {
+    public EmploymentType getEmploymentType() {
         return EmploymentType;
     }
 
-    public void setEmploymentType(com.employeeregistratrationsystem.model.EmploymentType employmentType) {
+    public void setEmploymentType(EmploymentType employmentType) {
         EmploymentType = employmentType;
     }
 

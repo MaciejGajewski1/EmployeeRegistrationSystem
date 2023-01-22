@@ -1,9 +1,11 @@
-package com.employeeregistratrationsystem.model;
+package com.emplregsys.ers.model;
 
-import javax.persistence.*;
+
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Objects;
+
 
 @Entity
 @Table(name = "personal_data")
