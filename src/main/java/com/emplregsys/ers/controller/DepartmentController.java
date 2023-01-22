@@ -1,10 +1,11 @@
-package com.employeeregistratrationsystem.controller;
+package com.emplregsys.ers.controller;
 
-import com.employeeregistratrationsystem.exceptions.DepartmentNotFoundException;
-import com.employeeregistratrationsystem.model.Department;
-import com.employeeregistratrationsystem.model.DepartmentDto;
-import com.employeeregistratrationsystem.service.DepartmentService;
-import lombok.RequiredArgsConstructor;
+import com.emplregsys.ers.exceptions.DepartmentNotFoundException;
+import com.emplregsys.ers.model.Department;
+import com.emplregsys.ers.model.DepartmentDto;
+import com.emplregsys.ers.service.DepartmentService;
+import com.emplregsys.ers.service.DepartmentServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,22 +22,26 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequiredArgsConstructor
-class DepartmentManageController {
+public class DepartmentController {
 
     private final DepartmentService departmentService;
+
+    @Autowired
+    public DepartmentController(DepartmentService departmentService) {
+        this.departmentService = departmentService;
+    }
 
     @PostMapping("/departments")
     public ResponseEntity<EntityModel<Department>> createDepartment(@RequestBody DepartmentDto departmentDto) {
         Department department = departmentService.createDepartment(departmentDto);
         UriComponents uriComponents = UriComponentsBuilder
-                .fromHttpUrl("http://localhost:8080/department/{id}")
+                .fromHttpUrl("http://localhost:8080/departments/{id}")
                 .buildAndExpand(department.getId());
         return ResponseEntity
                 .created(uriComponents.toUri())
                 .body(EntityModel.of(
                         department,
-                        linkTo(methodOn(DepartmentManageController.class).createDepartment(departmentDto)).withSelfRel()
+                        linkTo(methodOn(DepartmentController.class).createDepartment(departmentDto)).withSelfRel()
                 ));
     }
 
@@ -44,13 +50,13 @@ class DepartmentManageController {
         List<EntityModel<Department>> departments = departmentService.getDepartments().stream()
                 .map(department -> EntityModel.of(
                         department,
-                        linkTo(methodOn(DepartmentManageController.class).getDepartment(department.getId())).withSelfRel(),
-                        linkTo(methodOn(DepartmentManageController.class).getDepartments()).withRel("departments")
+                        linkTo(methodOn(DepartmentController.class).getDepartment(department.getId())).withSelfRel(),
+                        linkTo(methodOn(DepartmentController.class).getDepartments()).withRel("departments")
                 )).collect(Collectors.toList());
         return CollectionModel.of(
                 departments,
-                linkTo(methodOn(DepartmentManageController.class).getDepartments()).withSelfRel()
-                );
+                linkTo(methodOn(DepartmentController.class).getDepartments()).withSelfRel()
+        );
     }
 
     @GetMapping("/departments/{id}")

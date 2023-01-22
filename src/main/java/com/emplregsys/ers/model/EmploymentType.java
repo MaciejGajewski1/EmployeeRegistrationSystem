@@ -1,4 +1,4 @@
-package com.employeeregistratrationsystem.model;
+package com.emplregsys.ers.model;
 
 public enum EmploymentType {
     EMPLOYMENT_CONTRACT,
