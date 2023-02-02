@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `proffesion` VARCHAR(100) NOT NULL,
-    `employment_date` DATETIME,
+    `employment_date` DATE,
     `salary` DECIMAL(6,2) NOT NULL,
     `employment_type` VARCHAR(23),
     `department_id` BIGINT,
@@ -24,8 +24,8 @@ CREATE TABLE `personal_data` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(25) NOT NULL,
     `surename` VARCHAR(40) NOT NULL,
-    `birth_day` DATETIME NOT NULL,
-    `pesel` BINARY(11) NOT NULL,
+    `birth_day` DATE NOT NULL,
+    `pesel` BIGINT(11) NOT NULL,
     PRIMARY KEY(`id`),
     CONSTRAINT `fk_employee`
     FOREIGN KEY (`id`) REFERENCES `employee`(`id`)
@@ -48,6 +48,7 @@ DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(30) NOT NULL,
+    `uuid` VARCHAR(36) NOT NULL,
     PRIMARY KEY(`id`)
 );
 
@@ -65,7 +66,7 @@ CREATE TABLE `project_employee` (
 DROP TABLE IF EXISTS `image`;
 CREATE TABLE `image` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
-    `image_data` BLOB,
+    `image_data` MEDIUMBLOB,
     PRIMARY KEY(`id`),
     CONSTRAINT `fk2_employee`
     FOREIGN KEY (`id`) REFERENCES `employee`(`id`)

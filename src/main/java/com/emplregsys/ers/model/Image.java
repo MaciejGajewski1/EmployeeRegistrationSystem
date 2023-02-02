@@ -1,6 +1,7 @@
 package com.emplregsys.ers.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity

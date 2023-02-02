@@ -18,7 +18,7 @@ public class PersonalData {
     @Column(name = "birth_day")
     private LocalDate birthDay;
     @Column(name = "pesel")
-    private byte PESEL[];
+    private Long PESEL;
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "id")
@@ -29,7 +29,7 @@ public class PersonalData {
         if (this == o) return true;
         if (!(o instanceof PersonalData)) return false;
         final PersonalData that = (PersonalData) o;
-        return name.equals(that.name) && surename.equals(that.surename) && Arrays.equals(PESEL, that.PESEL);
+        return name.equals(that.name) && surename.equals(that.surename) && PESEL.equals(that.PESEL);
     }
 
     public Long getId() {
@@ -64,11 +64,11 @@ public class PersonalData {
         this.birthDay = birthDay;
     }
 
-    public byte[] getPESEL() {
+    public Long getPESEL() {
         return PESEL;
     }
 
-    public void setPESEL(byte[] PESEL) {
+    public void setPESEL(Long PESEL) {
         this.PESEL = PESEL;
     }
 
