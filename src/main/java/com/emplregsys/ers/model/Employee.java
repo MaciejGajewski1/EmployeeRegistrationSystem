@@ -5,7 +5,7 @@ package com.emplregsys.ers.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -18,11 +18,11 @@ public class Employee {
     private Long id;
     private String proffesion;
     @Column(name = "employment_date")
-    private LocalDateTime employmentDate;
+    private LocalDate employmentDate;
     private BigDecimal salary;
     @Enumerated(EnumType.STRING)
     @Column(name = "employment_type")
-    private EmploymentType EmploymentType;
+    private EmploymentType employmentType;
     @ManyToOne(fetch = FetchType.LAZY)
     private Department department;
     @OneToOne(
@@ -53,6 +53,19 @@ public class Employee {
             inverseJoinColumns = { @JoinColumn(name = "project_id") }
     )
     private Set<Project> projects = new HashSet<>();
+
+    public void addContactDetails(ContactDetails contactDetails) {
+        this.contactDetails = contactDetails;
+        contactDetails.setEmployee(this);
+    }
+    public void addPersonalData(PersonalData personalData) {
+        this.personalData = personalData;
+        personalData.setEmployee(this);
+    }
+    public void addImage(Image image) {
+        this.image = image;
+        image.setEmployee(this);
+    }
 
     public void addProject(Project project) {
         projects.add(project);
@@ -88,11 +101,11 @@ public class Employee {
         this.proffesion = proffesion;
     }
 
-    public LocalDateTime getEmploymentDate() {
+    public LocalDate getEmploymentDate() {
         return employmentDate;
     }
 
-    public void setEmploymentDate(LocalDateTime employmentDate) {
+    public void setEmploymentDate(LocalDate employmentDate) {
         this.employmentDate = employmentDate;
     }
 
@@ -105,11 +118,11 @@ public class Employee {
     }
 
     public EmploymentType getEmploymentType() {
-        return EmploymentType;
+        return employmentType;
     }
 
     public void setEmploymentType(EmploymentType employmentType) {
-        EmploymentType = employmentType;
+        this.employmentType = employmentType;
     }
 
     public Department getDepartment() {

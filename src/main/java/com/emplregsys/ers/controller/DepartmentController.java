@@ -4,7 +4,6 @@ import com.emplregsys.ers.exceptions.DepartmentNotFoundException;
 import com.emplregsys.ers.model.Department;
 import com.emplregsys.ers.model.DepartmentDto;
 import com.emplregsys.ers.service.DepartmentService;
-import com.emplregsys.ers.service.DepartmentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -13,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -73,6 +71,8 @@ public class DepartmentController {
                     .status(HttpStatus.NOT_FOUND)
                     .build();
         }
-        return ResponseEntity.noContent().build();
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .build();
     }
 }
