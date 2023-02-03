@@ -2,6 +2,7 @@ package com.emplregsys.ers.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -25,6 +26,7 @@ public class Employee {
     private EmploymentType employmentType;
     @ManyToOne(fetch = FetchType.LAZY)
     private Department department;
+    @JsonIgnore
     @OneToOne(
             mappedBy = "employee",
             cascade = CascadeType.ALL,
@@ -32,6 +34,7 @@ public class Employee {
             optional = false
     )
     private ContactDetails contactDetails;
+    @JsonIgnore
     @OneToOne(
             mappedBy = "employee",
             cascade = CascadeType.ALL,
@@ -39,6 +42,7 @@ public class Employee {
             optional = false
     )
     private PersonalData personalData;
+    @JsonIgnore
     @OneToOne(
             mappedBy = "employee",
             cascade = CascadeType.ALL,

@@ -20,4 +20,5 @@ public class ImageDto {
         image.setImageData(imageFile.getBytes());
         return image;
     }
+
 }

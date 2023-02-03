@@ -15,14 +15,14 @@ public class PersonalDataDto {
     private String surename;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate birthDay;
-    private Long PESEL;
+    private Long pesel;
 
     public PersonalData toPersonalData() {
         PersonalData personalData = new PersonalData();
         personalData.setName(this.name);
         personalData.setSurename(this.surename);
         personalData.setBirthday(this.birthDay);
-        personalData.setPESEL(this.PESEL);
+        personalData.setPesel(this.pesel);
         return personalData;
     }
 }

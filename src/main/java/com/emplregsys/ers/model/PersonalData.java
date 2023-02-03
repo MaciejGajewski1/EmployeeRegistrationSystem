@@ -1,6 +1,7 @@
 package com.emplregsys.ers.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -18,7 +19,8 @@ public class PersonalData {
     @Column(name = "birth_day")
     private LocalDate birthDay;
     @Column(name = "pesel")
-    private Long PESEL;
+    private Long pesel;
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "id")
@@ -29,7 +31,7 @@ public class PersonalData {
         if (this == o) return true;
         if (!(o instanceof PersonalData)) return false;
         final PersonalData that = (PersonalData) o;
-        return name.equals(that.name) && surename.equals(that.surename) && PESEL.equals(that.PESEL);
+        return name.equals(that.name) && surename.equals(that.surename) && pesel.equals(that.pesel);
     }
 
     public Long getId() {
@@ -64,12 +66,12 @@ public class PersonalData {
         this.birthDay = birthDay;
     }
 
-    public Long getPESEL() {
-        return PESEL;
+    public Long getPesel() {
+        return pesel;
     }
 
-    public void setPESEL(Long PESEL) {
-        this.PESEL = PESEL;
+    public void setPesel(Long pesel) {
+        this.pesel = pesel;
     }
 
     public Employee getEmployee() {

@@ -34,7 +34,7 @@ CREATE TABLE `personal_data` (
 DROP TABLE IF EXISTS `contact_details`;
 CREATE TABLE `contact_details` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
-    `phone_number` VARCHAR(12) NOT NULL,
+    `phone_number` VARCHAR(15) NOT NULL,
     `email` VARCHAR(50) NOT NULL,
     `street` VARCHAR(50) NOT NULL,
     `postal_code` VARCHAR(6) NOT NULL,
@@ -52,8 +52,8 @@ CREATE TABLE `project` (
     PRIMARY KEY(`id`)
 );
 
-DROP TABLE IF EXISTS `project_employee`;
-CREATE TABLE `project_employee` (
+DROP TABLE IF EXISTS `employee_projects`;
+CREATE TABLE `employee_projects` (
     `employee_id` BIGINT NOT NULL,
     `project_id` BIGINT NOT NULL,
     PRIMARY KEY(`employee_id`, project_id),

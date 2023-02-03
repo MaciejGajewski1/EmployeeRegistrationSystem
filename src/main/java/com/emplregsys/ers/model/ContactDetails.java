@@ -1,6 +1,7 @@
 package com.emplregsys.ers.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +17,7 @@ public class ContactDetails {
     @Column(name = "postal_code")
     private String postalCode;
     private String city;
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "id")
