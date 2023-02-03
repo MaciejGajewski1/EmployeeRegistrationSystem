@@ -13,6 +13,7 @@ public class Image {
     @Lob
     @Column(name = "image_data", length = 1000)
     private byte[] imageData;
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "id")
